@@ -185,38 +185,61 @@
     }
 
     function grant_access_to_subject(examid, myclassid) {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'confirmbtn',
-                cancelButton: 'cancelbtn'
-            },
-            buttonsStyling: false
-        })
-        swalWithBootstrapButtons.fire({
-            title: "Granting access!",
-            text: "Are you sure you'd like to grant access to subject teachers?",
-            icon: "error",
-            showCancelButton: true,
-            focusConfirm: false,
-            confirmButtonColor: '#3C9A42',
-            confirmButtonText: "Proceed",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    icon: "success",
-                    text: "Granting success",
-                    showConfirmButton: false,
-                    timer: 4500,
-                })
+        console.log('grant_access_to_subject =======================');
+        console.log('examid : ', examid)
+        console.log('myclassid : ', myclassid)
 
-                $.post('{{route("grant_access_to_subject_teachers")}}', {
-                    exam_id: examid,
-                    myclass_id: myclassid
-                }, (res) => {
-                    // window.location.href = 'http://localhost:8000/exams';
-                })
-            }
-        })
+        var class_subject_tds = document.getElementsByClassName('class_subject_td');
+        
+        console.log('class_subject_tds : ')
+        console.log(class_subject_tds)
+
+        
+        for (let i = 0; i < class_subject_tds.length; i++) {
+            console.log(class_subject_tds[i]);
+            console.log("data-id : ", $(class_subject_tds[i]).attr("data-id"));
+            dataId = $(class_subject_tds[i]).attr("data-id");
+            class_subject_tds[i].innerHTML = '<input type="checkbox" id="class_subject_check' + dataId + '">';  
+
+            
+        }
+
+        // elem1234.innerHTML = '<input type="checkbox" id="favcheckbox2`+ send_req[i]['partner_email'] +`">';  
+        
+        // const swalWithBootstrapButtons = Swal.mixin({
+        //     customClass: {
+        //         confirmButton: 'confirmbtn',
+        //         cancelButton: 'cancelbtn'
+        //     },
+        //     buttonsStyling: false
+        // })
+
+        // swalWithBootstrapButtons.fire({
+        //     title: "Granting access!",
+        //     text: "Are you sure you'd like to grant access to subject teachers?",
+        //     icon: "error",
+        //     showCancelButton: true,
+        //     focusConfirm: false,
+        //     confirmButtonColor: '#3C9A42',
+        //     confirmButtonText: "Proceed",
+        // }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         Swal.fire({
+        //             icon: "success",
+        //             text: "Granting success",
+        //             showConfirmButton: false,
+        //             timer: 4500,
+        //         })
+
+        //         $.post('{{route("grant_access_to_subject_teachers")}}', {
+        //             exam_id: examid,
+        //             myclass_id: myclassid
+        //         }, (res) => {
+        //             // window.location.href = 'http://localhost:8000/exams';
+        //         })
+        //     }
+        // })
+
     }
 
     function displayExamType(e) {

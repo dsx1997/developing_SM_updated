@@ -254,10 +254,10 @@
                                         <div style="display:none">{{$k=0, $p=0}}</div>
                                         @foreach($classsubject->subject->exam_record as $examrecord)
                                         @if($examrecord->exam_id==$exam_id)
-                                        @if($examrecord->pos==NULL)<div style="display:none">{{$k++;}}</div>
-                                        @elseif($examrecord->pos!=NULL)<div style="display:none">{{$p++;}}</div>
-                                        @else <h1>Erorr</h1>
-                                        @endif
+                                            @if($examrecord->pos==NULL)<div style="display:none">{{$k++;}}</div>
+                                            @elseif($examrecord->pos!=NULL)<div style="display:none">{{$p++;}}</div>
+                                            @else <h1>Erorr</h1>
+                                            @endif
                                         @endif
                                         @endforeach
                                         @if($p>0)
@@ -274,7 +274,11 @@
                                                     @elseif($examrecord->flag==4) Dean
                                                     @endif
                                                 </span> </td>
-                                            <td style="font-size:16px;font-family: 'Times New Roman', Times, serif;"><a href="/exam_class_upload/publish/{{$classsubject->id}}/{{$classsubject->subject->exam_record[0]->exam_id}}/{{$classsubject->teacher_id}}/{{$classsubject->subject_id}}" class="btn btn-secondary" style="color:white">view</a></td>
+                                            <td style="font-size:16px;font-family: 'Times New Roman', Times, serif;" id="class_subject_td{{$classsubject->subject_id}}" class="class_subject_td" data-id="{{$classsubject->subject_id}}">
+                                                <a id="class_subject_view{{$classsubject->subject_id}}"  href="/exam_class_upload/publish/{{$classsubject->id}}/{{$classsubject->subject->exam_record[0]->exam_id}}/{{$classsubject->teacher_id}}/{{$classsubject->subject_id}}" 
+                                                    class="btn btn-secondary" style="color:white">view
+                                                </a>
+                                            </td>
                                         </tr>
                                         @endif
                                         @endforeach
@@ -336,7 +340,10 @@
                             <a class="btn" href="#" style="font-size:16px;background-color:#b7c2D0;color:black;border-radius:6px;font-family: 'Times New Roman', Times, serif;">Back</a>
                             <a class="btn" href="#" style="font-size:16px;background-color:#45AB48;color:white;border-radius:6px;font-family: 'Times New Roman', Times, serif;">Download Results</a>
 
-                            <a class="btn" onclick="grant_access_to_subject({{$exam_id}},{{ $myclass_id}})" style="font-size:16px;background-color:#31A4dd;color:white;border-radius:6px;font-family: 'Times New Roman', Times, serif;float:right">Grant access to subject teachers</a>
+                            <a class="btn" onclick="grant_access_to_subject({{$exam_id}},{{ $myclass_id}})" 
+                                style="font-size:16px;background-color:#31A4dd;color:white;border-radius:6px;font-family: 'Times New Roman', Times, serif;float:right">
+                                Grant access to subject teachers
+                            </a>
 
                         </div>
                     </div>
